@@ -26,8 +26,8 @@ func main() {
 		log.Panic(err)
 	}
 
-	bot.Debug = true
-	log.Printf("Authorized on account %s", bot.Self.UserName)
+	bot.Debug = false
+	log.Default().Printf("Authorized on account %s", bot.Self.UserName)
 
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
@@ -36,7 +36,7 @@ func main() {
 
 	for update := range updates {
 		if update.Message != nil && update.Message.IsCommand() { // If we got a message
-			log.Printf("[COMMAND::%s] %s", update.Message.From.UserName, update.Message.Text)
+			log.Default().Printf("[COMMAND::%s] %s", update.Message.From.UserName, update.Message.Text)
 
 			if update.Message.Command() == "start" || update.Message.Command() == "echo" {
 				msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
