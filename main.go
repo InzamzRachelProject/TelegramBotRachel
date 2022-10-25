@@ -23,14 +23,18 @@ func main() {
 	//官方示例
 	bot, err := tgbotapi.NewBotAPI(TGBotToken)
 	if err != nil {
-		log.Panic(err)
+		log.Panic(err.Error())
 	}
 
-	bot.Debug = false
+	if (os.Getenv("DEBUG") == "true"){
+		bot.Debug = true
+	}else {
+		bot.Debug = false
+	}
 	log.Default().Printf("Authorized on account %s", bot.Self.UserName)
 
 	u := tgbotapi.NewUpdate(0)
-	u.Timeout = 60
+	u.Timeout = 30
 
 	updates := bot.GetUpdatesChan(u)
 
