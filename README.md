@@ -28,3 +28,4 @@ English Version will update later...
 - [ ] EveryDayMSG
 - [ ] Fitness Summary
 - [ ] Codeforces PeekingTom
+- [ ] Trans to Webhook Mode
