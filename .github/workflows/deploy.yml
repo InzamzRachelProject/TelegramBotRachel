@@ -40,8 +40,8 @@ jobs:
           script: |
             pkill TGBotRachel
             cd ${{ secrets.REMOTE_TARGET }}
-            MASTER_ID=${{ secrets.MASTER_ID }}
-            CHANNEL_REPORT=${{ secrets.CHANNEL_REPORT }}
-            CHANNEL_SLEEP=${{ secrets.CHANNEL_SLEEP }}
-            TGBOTTOKEN=${{ secrets.TGBOTTOKEN }}
+            export MASTER_ID=${{ secrets.MASTER_ID }}
+            export CHANNEL_REPORT=${{ secrets.CHANNEL_REPORT }}
+            export CHANNEL_SLEEP=${{ secrets.CHANNEL_SLEEP }}
+            export TGBOTTOKEN=${{ secrets.TGBOTTOKEN }}
             nohup ./TGBotRachel > /dev/null   2>error.log  &
