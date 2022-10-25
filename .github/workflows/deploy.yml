@@ -14,7 +14,7 @@ jobs:
           go-version: 1.19.2
 
       - name: Build
-        run: go build -v ./main.go -o TGBotRachel
+        run: go build -v -o TGBotRachel ./main.go
 
       - name: Deploy to Staging server
         uses: easingthemes/ssh-deploy@main
@@ -30,9 +30,9 @@ jobs:
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
             pkill TGBotRachel
