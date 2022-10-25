@@ -21,8 +21,8 @@ English Version will update later...
 
 ## TODO
 
-- [ ] Echo
-- [ ] OjContestCanlanderWithLark
+- [x] Echo
+- [x] OjContestCanlanderWithLark
 - [ ] OjContestCanlanderWithGoogle
 - [ ] AppleBooksNoteExport
 - [ ] EveryDayMSG
