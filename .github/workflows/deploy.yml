@@ -1,6 +1,9 @@
-name: Go package
+name: Telegram Bot Rachel
 
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,7 +19,7 @@ jobs:
       - name: Build
         run: go build -v -o TGBotRachel ./main.go
 
-      - name: Deploy to Staging server
+      - name: Deploy
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
@@ -27,7 +30,7 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/Module/, /CloudFunction/"
       
-      - name: executing remote ssh commands using ssh key
+      - name: Restart Rachel
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -37,4 +40,8 @@ jobs:
           script: |
             pkill TGBotRachel
             cd ${{ secrets.REMOTE_TARGET }}
+            MASTER_ID=${{ secrets.MASTER_ID }}
+            CHANNEL_REPORT=${{ secrets.CHANNEL_REPORT }}
+            CHANNEL_SLEEP=${{ secrets.CHANNEL_SLEEP }}
+            TGBOTTOKEN=${{ secrets.TGBOTTOKEN }}
             nohup ./TGBotRachel > /dev/null   2>error.log  &
